@@ -2,13 +2,19 @@ import React, {useReducer} from "react";
 
 interface State {
   isRequestInProgress: boolean;
-  requestStep: RequestStep;
+  requestStep: 'start' | 'pending' | 'finished' | 'idle';
 }
-type RequestStep = string;
 
-interface Action {
-  type: string;
-}
+type Action = | { type: 'START_REQUEST' }
+  | { type: 'PENDING_REQUEST' }
+  | { type: 'FINISH_REQUEST' }
+  | { type: 'RESET_REQUEST' };
+
+// type RequestStep = string;
+
+// interface Action {
+//   type: string;
+// }
 
 const initialState: State = {
   isRequestInProgress: false,
